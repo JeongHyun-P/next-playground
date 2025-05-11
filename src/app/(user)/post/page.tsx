@@ -1,5 +1,6 @@
 'use client'
 import { useRouter } from 'next/navigation';
+import styles from './styles.module.css'
 
 export default function Page() {
   const router = useRouter();
@@ -10,7 +11,7 @@ export default function Page() {
 
   return (
     <div>
-      <h3>post</h3>
+      <h3 className={styles.postTitle}>post</h3>
       <button onClick={onClickDetail}>post detail</button>
     </div>
   );
