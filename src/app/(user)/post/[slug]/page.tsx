@@ -5,10 +5,21 @@
  * slug로 정적 페이지 생성시 메모제이션, CDN 캐싱가능 -> 페이지 로딩속도 향상
  * 클라이언트 캐싱도 가능 (react-query, swr 등)
  */
-export default function Page() {
+import { getPostBySlug } from '@/lib/actions';
+import { notFound } from 'next/navigation';
+
+export default async function Page({params}: {params: {slug: string}}) {
+  const { slug } = params
+  const post = await getPostBySlug(slug);
+
+  if (!post) {
+    notFound();
+  }
+
   return (
     <div>
-      <h3>/POST</h3>
+      <h3>DETAIL({post.id})</h3>
+      <p>{post.title}</p>
     </div>
   );
 }
